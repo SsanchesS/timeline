@@ -1,0 +1,36 @@
+.SliderArrow
+   font-size: 14px
+   .counter
+      margin-bottom: 20px
+      color: #444444
+   .arrows
+      display: flex
+      align-items: center
+      text-align: center
+      font-size: 24px
+      gap: 20px
+      .arrow
+         width: 50px
+         display: flex
+         justify-content: center
+         align-items: center         
+         height: 50px
+         border: 1px solid #444444
+         color: #000
+         border-radius: 50%
+         cursor: pointer
+         transform: scale(1)
+         transition: .2s ease transform
+         &.left::after
+            content: "<"
+         &.right::after
+            content: ">"
+         &:hover
+            transform: scale(1.1)
+            border: 1px solid #444444
+            color: #000
+         &.unactive
+            border: 1px solid grey
+            color: grey
+            cursor: auto
+            pointer-events: none
