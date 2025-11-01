@@ -1,6 +1,4 @@
-import HistoryDate from "./components/HistoryDate/HistoryDate"
-import Slider from "./components/Slider/Slider"
-import Year from "./components/Year/Year"
+import Timeline from "./Timeline"
 
 function App() {
   const data = [
@@ -76,24 +74,9 @@ function App() {
     ]
   }
 ]
-
-  const handleCircleClick = () => {
-    console.log("Клик по кругу!")
-  }
 return (
 <div className="App">
-  <div className="bg">
-    <div className="grid">
-        <div className="first"></div>
-        <div className="second"></div>
-        <div className="third"></div>
-        <div className="fourth"></div>
-    </div>
-    <div className="circle" onClick={handleCircleClick}></div>
-  </div>
-  <HistoryDate/>
-  <Year year_start={"2015"} year_end={"2022"}/>
-  <Slider data={data}/>
+  <Timeline data={data}/>
 </div>
 )}
 export default App
