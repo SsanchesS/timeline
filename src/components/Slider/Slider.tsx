@@ -12,9 +12,10 @@ import s from "./Slider.module.sass"
 import type IProps from "../../types/types"
 
 interface INewProps extends IProps{ 
-   activeIndex: number
+   activeIndex: number,
+   handleCircleClick: (index:number)=>void
 }
-const Slider = ({activeIndex,data}:INewProps) => {
+const Slider = ({data,activeIndex,handleCircleClick}:INewProps) => {
 
    const SwiperWrapRef = useRef<HTMLDivElement | null>(null) // анимация скрытия
    const swiperRef = useRef<SwiperType | null>(null) // управление Swiper`ом
@@ -26,8 +27,14 @@ const Slider = ({activeIndex,data}:INewProps) => {
    
    const [slide_num, setSlide_num] = useState(activeIndex) // текущий слайд
    const [displaySlide, setDisplaySlide] = useState(0) // что показываем
-   const nextSlide = () => changeSlide(slide_num + 1)
-   const backSlide = () => changeSlide(slide_num - 1)
+   const nextSlide = () =>{
+      changeSlide(slide_num + 1)
+      handleCircleClick(slide_num + 1)
+   }
+   const backSlide = () =>{
+      changeSlide(slide_num - 1)
+      handleCircleClick(slide_num - 1)
+   }
 
 
    const changeSlide = (newIndex: number) => {

@@ -81,7 +81,7 @@ return (
    </div>
    <HistoryDate/>
    <Year year_start={yearStart} year_end={yearEnd}/>
-   <Slider data={data} activeIndex={activeIndex}/>
+   <Slider data={data} activeIndex={activeIndex} handleCircleClick={handleCircleClick}/>
 </div>
 )}
 export default Timeline
