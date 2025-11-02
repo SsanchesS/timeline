@@ -25,15 +25,14 @@ const Slider = ({data,activeIndex,handleCircleClick}:INewProps) => {
    const [isAtStart, setIsAtStart] = useState(true)
    const [isAtEnd, setIsAtEnd] = useState(false)
    
-   const [slide_num, setSlide_num] = useState(activeIndex) // текущий слайд
    const [displaySlide, setDisplaySlide] = useState(0) // что показываем
    const nextSlide = () =>{
-      changeSlide(slide_num + 1)
-      handleCircleClick(slide_num + 1)
+      changeSlide(activeIndex + 1)
+      handleCircleClick(activeIndex + 1)
    }
    const backSlide = () =>{
-      changeSlide(slide_num - 1)
-      handleCircleClick(slide_num - 1)
+      changeSlide(activeIndex - 1)
+      handleCircleClick(activeIndex - 1)
    }
 
 
@@ -41,9 +40,6 @@ const Slider = ({data,activeIndex,handleCircleClick}:INewProps) => {
       if (!SwiperWrapRef.current) return
 
       const tl = gsap.timeline({
-         onStart: () => {
-            setSlide_num(newIndex) // обновляем счётчик после анимации
-         },
       })
 
       tl.to(SwiperWrapRef.current, {
@@ -61,11 +57,11 @@ const Slider = ({data,activeIndex,handleCircleClick}:INewProps) => {
          onStart: () => setDisplaySlide(newIndex), // новые карточки
       })
    }
-   
+
 return (
 <div className={s.Slider}>
    <SliderArrow 
-      slide_num={slide_num+1 > 9 ? `${slide_num+1}` : `0${slide_num+1}`} 
+      slide_num={activeIndex+1 > 9 ? `${activeIndex+1}` : `0${activeIndex+1}`} 
       slide_len={data.length > 9 ? `${data.length}` : `0${data.length}`}
       nextSlide={nextSlide}
       backSlide={backSlide}
@@ -85,6 +81,11 @@ return (
          spaceBetween={20} // расстояние между слайдами
          slidesPerView={3} // сколько карточек видно одновременно
          grabCursor={true} // курсор "рука" для перетаскивания
+         breakpoints={{
+            0: { slidesPerView: 2 },       // для мобильных
+            801: { slidesPerView: 3 },     // от 801px — три карточки
+         }}
+
          // style={{ width: "80%" }}
       >
          {data[displaySlide].content.map(el => (
