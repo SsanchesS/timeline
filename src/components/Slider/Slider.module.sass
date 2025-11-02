@@ -27,7 +27,7 @@
          justify-content: center
          align-items: center
          color: #3877EE
-         background-color: #fff
+         background-color: #fff  
          border-radius: 50%
          cursor: pointer
          box-shadow: 0 0 15px rgba(56, 119, 238, 0.1)
@@ -49,5 +49,14 @@
       top: 85%
 @media (max-height: 800px)
    .Slider
+      position: static
+      transform: none 
       .SwiperWrap
-         order: -1   
+         order: -1  
+@media (max-width: 600px)
+   .Slider
+      .SwiperWrap
+         .arrow
+            font-size: 16px
+            min-width: 36px
+            min-height: 36px

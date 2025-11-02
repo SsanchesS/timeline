@@ -28,7 +28,10 @@ const Timeline = ({data}:IProps) => {
 
    // Обработка клика по точке
    const handleCircleClick = (index: number) => {
-      if (!circleRef.current || index === activeIndex) return
+      if (!circleRef.current || index === activeIndex){
+         setActiveIndex(index)
+         return
+      }
 
       // кратчайший путь
       const totalPoints = 360 / data.length
@@ -63,18 +66,23 @@ const Timeline = ({data}:IProps) => {
    const yearEnd = activeContent[activeContent.length - 1].year
 
    //
-   const [isMobile, setIsMobile] = useState(window.matchMedia("(max-height: 800px)").matches)
+   const [isMobile, setIsMobile] = useState(window.matchMedia("(max-height: 560px)").matches)
    // Для реального приожения этот слушатель не нужен
    useEffect(() => { 
-      const mediaQuery = window.matchMedia("(max-height: 800px)")
+      const mediaQueryHeight = window.matchMedia("(max-height: 560px)")
+      const mediaQueryWidth = window.matchMedia("(max-width: 600px)")
 
       const handleMediaQueryChange = (event: MediaQueryList | MediaQueryListEvent) => setIsMobile(event.matches)
 
-      mediaQuery.addEventListener('change', handleMediaQueryChange)
+      mediaQueryHeight.addEventListener('change', handleMediaQueryChange)
+      mediaQueryWidth.addEventListener('change', handleMediaQueryChange)
 
-      return () => mediaQuery.removeEventListener('change', handleMediaQueryChange)
+      return () =>{
+         mediaQueryHeight.removeEventListener('change', handleMediaQueryChange)
+         mediaQueryWidth.removeEventListener('change', handleMediaQueryChange)
+      }
    }, [])
- 
+   
 return (
 <div className="Timeline">
    { !isMobile &&

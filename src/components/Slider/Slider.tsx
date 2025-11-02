@@ -57,7 +57,6 @@ const Slider = ({data,activeIndex,handleCircleClick}:INewProps) => {
          onStart: () => setDisplaySlide(newIndex), // новые карточки
       })
    }
-
 return (
 <div className={s.Slider}>
    <SliderArrow 
@@ -82,8 +81,10 @@ return (
          slidesPerView={3} // сколько карточек видно одновременно
          grabCursor={true} // курсор "рука" для перетаскивания
          breakpoints={{
-            0: { slidesPerView: 2 },       // для мобильных
-            801: { slidesPerView: 3 },     // от 801px — три карточки
+            0: { slidesPerView: 1},
+            370: { slidesPerView: 1.2},
+            500: { slidesPerView: 2},
+            801: { slidesPerView: 3},     // от 801px — три карточки
          }}
 
          // style={{ width: "80%" }}

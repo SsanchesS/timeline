@@ -15,6 +15,9 @@ body
   position: relative
   width: 100%
   height: 100%
+  display: flex 
+  flex-direction: column
+  justify-content: space-around
 
 .bg
   position: absolute
@@ -95,3 +98,8 @@ body
     border: 1px solid rgb(199, 205, 217)
   .swiper-pagination
     margin-top: 100px
+@media (max-width: 500px)
+  .swiper-slide
+    transition: opacity 0.3s ease
+    &:not(.swiper-slide-active)
+      opacity: 0.5
